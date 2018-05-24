@@ -34,7 +34,7 @@ class BayesianOptimization(object):
         self.space = TargetSpace(pbounds, random_state)
         # Initialization flag
         self.initialized = False
-
+        self.y_max=0
         # Initialization lists --- stores starting points before process begins
         self.init_points = []
         self.x_init = []
@@ -101,8 +101,8 @@ class BayesianOptimization(object):
 
     def _observe_point(self, x,y):
         self.space.observe_point(x,y)
-        if self.verbose:
-            self.plog.print_step(x, y)
+        #if self.verbose:
+            #self.plog.print_step(x, y)
 
 
     def explore(self, points_dict, eager=False):
@@ -286,59 +286,61 @@ class BayesianOptimization(object):
 
 
 
-def newMax(self,
-             acq='ucb',
-             kappa=2.576,
-             xi=0.0,
-             **gp_params):
+    def newMax(self,
+                 acq='ucb',
+                 kappa=2.576,
+                 xi=0.0,
+                 **gp_params):
 
-    self.util = UtilityFunction(kind=acq, kappa=kappa, xi=xi)
-    y_max = self.space.Y.max()
-    self.gp.set_params(**gp_params)
-    self.gp.fit(self.space.X, self.space.Y)
-    x_max = acq_max(ac=self.util.utility,
-                    gp=self.gp,
-                    y_max=y_max,
-                    bounds=self.space.bounds,
-                    random_state=self.random_state,
-                    **self._acqkw)
-    if not self.space.validate_conf(x_max) :
-        x_max = self.space.rechoose_conf(x_max)
-    # Print new header
-    if self.verbose:
-        self.plog.print_header(initialization=False)
-    pwarning = False
-    while x_max in self.space:
-        print("Change X_MAX")
-        x_max = self.space.random_points(1)[0]
-        pwarning = True
-    # Append most recently generated values to X and Y arrays
-    y = self.space.observe_point(x_max)
-    return x_max
+        self.util = UtilityFunction(kind=acq, kappa=kappa, xi=xi)
 
-def compute(x_max,y):
+        self.y_max = self.space.Y.max()
+        self.gp.set_params(**gp_params)
+        self.gp.fit(self.space.X, self.space.Y)
+        x_max = acq_max(ac=self.util.utility,
+                        gp=self.gp,
+                        y_max=self.y_max,
+                        bounds=self.space.bounds,
+                        random_state=self.random_state,
+                        **self._acqkw)
+        if not self.space.validate_conf(x_max) :
+            x_max = self.space.rechoose_conf(x_max)
+        # Print new header
+        if self.verbose:
+            self.plog.print_header(initialization=False)
+        pwarning = False
+        while x_max in self.space:
+            print("Change X_MAX")
+            x_max = self.space.random_points(1)[0]
+            pwarning = True
+        # Append most recently generated values to X and Y arrays
 
-    # Updating the GP.
-    self.gp.fit(self.space.X, self.space.Y)
+        return x_max
 
-    # Update the best params seen so far
-    self.res['max'] = self.space.max_point()
-    self.res['all']['values'].append(y)
-    self.res['all']['params'].append(dict(zip(self.space.keys, x_max)))
+    def compute(self,x_max,y):
 
-    # Update maximum value to search for next probe point.
-    if self.space.Y[-1] > y_max:
-        y_max = self.space.Y[-1]
+        # Updating the GP.
+        self.space.observe_point(x_max,y)
+        self.gp.fit(self.space.X, self.space.Y)
 
-    # Maximize acquisition function to find next probing point
+        # Update the best params seen so far
+        self.res['max'] = self.space.max_point()
+        self.res['all']['values'].append(y)
+        self.res['all']['params'].append(dict(zip(self.space.keys, x_max)))
 
-    x_max = acq_max(ac=self.util.utility,
-                    gp=self.gp,
-                    y_max=y_max,
-                    bounds=self.space.bounds,
-                    random_state=self.random_state,
-                    **self._acqkw)
-    return x_max
+        # Update maximum value to search for next probe point.
+        if self.space.Y[-1] >self. y_max:
+            self.y_max = self.space.Y[-1]
+
+        # Maximize acquisition function to find next probing point
+
+        x_max = acq_max(ac=self.util.utility,
+                        gp=self.gp,
+                        y_max=self.y_max,
+                        bounds=self.space.bounds,
+                        random_state=self.random_state,
+                        **self._acqkw)
+        return x_max
 
 
 

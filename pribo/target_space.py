@@ -140,7 +140,7 @@ class TargetSpace(object):
             y = self._cache[_hashable(x)]
         else:
             self.add_observation(x, y)
-        return y
+
 
     def add_observation(self, x, y):
         """
@@ -244,14 +244,14 @@ class TargetSpace(object):
     def config_to_dic(self,conf):
         params = dict(zip(self.keys, conf))
         dic_conf={}
-        dic_conf["cpu_count"]=str(params['cpu_count'])
-        dic_conf["ram"]=str(params['ram'])
-        dic_conf["count"]=str(params['count'])
-        dic_conf["netType"]=str(params['netType'])
-        dic_conf["diskType"]=str(params['diskType'])
+        dic_conf["cpu_count"]=int(params['cpu_count'])
+        dic_conf["ram"]=int(params['ram'])
+        dic_conf["count"]=int(params['count'])
+        dic_conf["netType"]=int(params['netType'])
+        dic_conf["diskType"]=int(params['diskType'])
         return dic_conf
-    def dic_to_conf(self,x):
-        return np.array(list(x.values()))
+    def dic_to_conf(self,conf):
+        return np.array(list(conf.values()))
 
 
     def validate_conf(self,data):
@@ -331,7 +331,6 @@ class TargetSpace(object):
             data = np.empty((1, self.dim))
             for col, (lower, upper) in enumerate(self.bounds):
               data.T[col] = self.random_state.randint(lower, upper, size=1)
-              
             data = np.asarray(data).ravel()
             if(self.validate_conf(data)):
                 random_list.append(data.tolist())
