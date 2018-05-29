@@ -77,7 +77,7 @@ def run_pribo(conf_with_time,time):
         return bo.conf_diction(bo.compute(conf,time).tolist())
 
 
-api.add_resource(PriBO, '/')
+api.add_resource(PriBO, '/pribo')
 
 
 
