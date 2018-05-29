@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd848703-260c-417d-acd0-034b8d9b6904" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pribo/bayesian_optimization.py" beforeDir="false" afterPath="$PROJECT_DIR$/pribo/bayesian_optimization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pribo/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pribo/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pribo/target_space.py" beforeDir="false" afterPath="$PROJECT_DIR$/pribo/target_space.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,6 +22,15 @@
               <folding>
                 <element signature="e#14#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="70" column="23" lean-forward="true" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -52,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bayesian_optimization.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bayesian_optimization.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pribo/bayesian_optimization.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
@@ -90,8 +94,8 @@
       <find>rechoose</find>
       <find>init_points</find>
       <find>_Yview</find>
-      <find>rechoose_conf</find>
       <find>keys</find>
+      <find>rechoose_conf</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,6 +114,7 @@
         <option value="$PROJECT_DIR$/pribo/bayesian_optimization.py" />
         <option value="$PROJECT_DIR$/pribo/helpers.py" />
         <option value="$PROJECT_DIR$/pribo/target_space.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -604,16 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1288">
-          <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-          <folding>
-            <element signature="e#14#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pribo/helpers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -628,6 +623,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="61" lean-forward="true" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1288">
+          <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+          <folding>
+            <element signature="e#14#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="70" column="23" lean-forward="true" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
         </state>
       </provider>
     </entry>
