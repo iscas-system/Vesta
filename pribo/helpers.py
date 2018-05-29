@@ -1,3 +1,4 @@
+# -*- coding:UTF-8 -*-
 from __future__ import print_function
 from __future__ import division
 import numpy as np
@@ -53,7 +54,8 @@ def get_lcm(x,y):
         return lcm
 
 # ---------prior function ------------
-def do_filter(xlist):
+def prior(xlist):
+    #目前由于对于先验知识设计需要重新设计，因此在此处仍然是以最高AC值为此轮选点的依据
     xlist = sorted(xlist.items())
     result = xlist[0][1]
 
@@ -135,9 +137,8 @@ def acq_max(ac, gp, y_max, bounds, random_state, n_warmup=100000, n_iter=250):
             max_acq = -res.fun[0]
             
 
-    # Clip output to make sure it lies within the bounds. Due to floating
-    # x_maxdict contains morethan
-    x_max = do_filter(x_dict)
+    # 此方法用于先验知识对Top K个conf进行处理
+    x_max = prior(x_dict)
     print("After compare 10 configuration")
     lastResult = np.clip(x_max, bounds[:, 0], bounds[:, 1])
     print("temp Max is")

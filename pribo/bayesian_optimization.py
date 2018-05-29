@@ -12,15 +12,15 @@ from .target_space import TargetSpace
 
 
 class BayesianOptimization(object):
+    """
+        BOA实现，本版本为原始版本，没有加入先验知识函数，已预留先验知识接入接口
+    """
 
     def __init__(self, pbounds, random_state=None, verbose=1):
         """
-        :param f:
-            Function to be maximized.
 
         :param pbounds:
-            Dictionary with parameters names as keys and a tuple with minimum
-            and maximum values.
+            各配置的选择范围.
 
         :param verbose:
             Whether or not to print progress.
@@ -310,16 +310,11 @@ class BayesianOptimization(object):
         if not self.space.validate_conf(x_max) :
             x_max = self.space.rechoose_conf(x_max)
         '''
-        # Print new header
-        if self.verbose:
-            self.plog.print_header(initialization=False)
+
         pwarning = False
         while x_max in self.space:
-            print("Change X_MAX")
             x_max = self.space.random_points(1)[0]
             pwarning = True
-        # Append most recently generated values to X and Y arrays
-        print("out newMax")
         return x_max
 
     def compute(self,x_max,y):

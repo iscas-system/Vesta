@@ -1,27 +1,19 @@
-import httplib
-import urllib
-import urllib2
+import requests
 
-get_url = "http://192.168.81.16/cgi-bin/python_test/test.py?ServiceCode=aaaa"
+#初始化，获得初始化配置方案
+ip = "http://133.133.133.124:10141"
+#get init config
+init_conf_respon = requests.get(ip)
+print(init_conf_respon.content)
 
-conn = httplib.HTTPConnection("192.168.81.16")
-conn.request(method="GET",url=get_url)
-
-response = conn.getresponse()
-get_res= response.read()
-print get_res
-
-
-
-test_data = {'ServiceCode':'aaaa',
-             'b':'bbbbb'}
-test_data_urlencode = urllib.urlencode(test_data)
-
-post_requrl = "http://192.168.81.16/cgi-bin/python_test/test.py"
-
-req = urllib2.Request(url = post_requrl,data =test_data_urlencode)
-print req
-
-res_data = urllib2.urlopen(req)
-res = res_data.read()
-print res
+#训练阶段，发起put请求,返回新的配置方案
+conf={
+    "count": "3.0",
+    "cpu_count": "2.0",
+    "diskType": "0.0",
+    "netType": "0.0",
+    "ram": "10.0",
+    "time": "2123"
+}
+new_conf_response = requests.put(ip,data=conf)
+print(new_conf_response.content)

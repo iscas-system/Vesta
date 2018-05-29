@@ -9,8 +9,9 @@ from pribo.bayesian_optimization import *
 app = Flask(__name__)
 api = Api(app)
 
+#BOA算法
 bo = BayesianOptimization(pbounds={'cpu_count':(2,8),'ram':(4,16),'diskType':(0,1),'netType':(0,1),'count':(2,5)})
-
+#初始化点的个数选择
 init_point_size= GLOBAL.get('INIT_POINT')
 
 init_flag=False
@@ -24,7 +25,7 @@ parser.add_argument('netType')
 parser.add_argument('diskType')
 
 class PriBO(Resource):
-
+    #初始化步骤调用get方法
     def get(self):
         conf=init_pribo(GLOBAL.get('INIT_POINT'))
         print 'conf is'
@@ -33,9 +34,8 @@ class PriBO(Resource):
 
     def delete(self,init_points):
         return None
-
+    #训练阶段调用Put方法，接收配置方案以及对应的运行时间
     def put(self):
-        app.logger.info("----------------------------------------------")
         args = parser.parse_args()
         print("put recived")
         conf={}
@@ -45,11 +45,12 @@ class PriBO(Resource):
         time=int(args['time'])
         conf['netType']=args['netType']
         conf['diskType']=args['diskType']
-        print conf
         if conf==None:
             return "No recive"
         return run_pribo(conf,time)
+
 def init_pribo(init_points):
+    #随机产生初始化点。如果需要对初始选点做一些先验判断之类的操作，可以在此函数中处理
     rand_points = bo.space.random_points(init_points)
     #bo.init_points.extend(rand_points)
     conflist=[]
@@ -62,11 +63,12 @@ def run_pribo(conf_with_time,time):
     global init_point_size
     global init_flag
     if   init_point_size != 0 and init_flag == False:
+        app.logger.info("--Init --")
         bo.init(conf,time)
         init_point_size -= 1
     else:
         if init_point_size==0 or init_flag:
-            app.logger.info("-----------------Training -----------------------------")
+            app.logger.info("--Begin Training --")
             if init_flag == False:
                 init_flag = True
             init_point_size -=1
