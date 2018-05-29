@@ -11,7 +11,10 @@ api = Api(app)
 
 bo = BayesianOptimization(pbounds={'cpu_count':(2,8),'ram':(4,16),'diskType':(0,1),'netType':(0,1),'count':(2,5)})
 
-init_point_size=0
+init_point_size= GLOBAL.get('INIT_POINT')
+
+init_flag=False
+
 parser = reqparse.RequestParser()
 parser.add_argument('count')
 parser.add_argument('ram')
@@ -22,10 +25,8 @@ parser.add_argument('diskType')
 
 class PriBO(Resource):
 
-    def get(self,init_points):
-        conf=init_pribo(init_points)
-        global init_point_size
-        init_point_size = init_points
+    def get(self):
+        conf=init_pribo(GLOBAL.get('INIT_POINT'))
         print 'conf is'
         print conf
         return conf
@@ -33,7 +34,8 @@ class PriBO(Resource):
     def delete(self,init_points):
         return None
 
-    def put(self,init_points):
+    def put(self):
+        app.logger.info("----------------------------------------------")
         args = parser.parse_args()
         print("put recived")
         conf={}
@@ -58,18 +60,22 @@ def init_pribo(init_points):
 def run_pribo(conf_with_time,time):
     conf= bo.space.dic_to_conf(conf_with_time)
     global init_point_size
-    if   init_point_size != 0 :
+    global init_flag
+    if   init_point_size != 0 and init_flag == False:
         bo.init(conf,time)
         init_point_size -= 1
     else:
-        if init_point_size==0:
+        if init_point_size==0 or init_flag:
+            app.logger.info("-----------------Training -----------------------------")
+            if init_flag == False:
+                init_flag = True
             init_point_size -=1
             newconf=bo.newMax()
             return bo.conf_diction(newconf)
         return bo.conf_diction(bo.compute(conf,time).tolist())
 
 
-api.add_resource(PriBO, '/<int:init_points>')
+api.add_resource(PriBO, '/')
 
 
 

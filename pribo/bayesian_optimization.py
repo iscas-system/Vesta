@@ -1,3 +1,5 @@
+# -*- coding:UTF-8 -*-
+
 from __future__ import print_function
 from __future__ import division
 
@@ -291,7 +293,7 @@ class BayesianOptimization(object):
                  kappa=2.576,
                  xi=0.0,
                  **gp_params):
-
+        print("into newMax")
         self.util = UtilityFunction(kind=acq, kappa=kappa, xi=xi)
 
         self.y_max = self.space.Y.max()
@@ -303,8 +305,11 @@ class BayesianOptimization(object):
                         bounds=self.space.bounds,
                         random_state=self.random_state,
                         **self._acqkw)
+        #如果对CPU和RAM之间的比例没有特殊需求的话，可以不用对选出的配置进行重新选择
+        '''
         if not self.space.validate_conf(x_max) :
             x_max = self.space.rechoose_conf(x_max)
+        '''
         # Print new header
         if self.verbose:
             self.plog.print_header(initialization=False)
@@ -314,7 +319,7 @@ class BayesianOptimization(object):
             x_max = self.space.random_points(1)[0]
             pwarning = True
         # Append most recently generated values to X and Y arrays
-
+        print("out newMax")
         return x_max
 
     def compute(self,x_max,y):

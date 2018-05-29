@@ -1,3 +1,5 @@
+"""
+
 from bayes_opt import BayesianOptimization
 import numpy as np
 
@@ -35,3 +37,5 @@ def queryTarget(cpu_count,ram,diskType,netType,count):
 bo = BayesianOptimization(queryTarget, {'cpu_count':(2,8),'ram':(4,16),'diskType':(0,1),'netType':(0,1),'count':(2,5)})
 bo.maximize(init_points=3, n_iter=0, acq='ei', kappa=5)
 bo.maximize(init_points=0, n_iter=10, acq='ei', kappa=5)
+
+"""

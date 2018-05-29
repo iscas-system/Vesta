@@ -51,16 +51,20 @@ def get_lcm(x,y):
            greater += 1
            
         return lcm
- 
+
+# ---------prior function ------------
 def do_filter(xlist):
     xlist = sorted(xlist.items())
     result = xlist[0][1]
+
+    '''
     for i in range(len(xlist)-1,0,-1):
         if i < len(xlist) -10 and i <0:
             break
         result = better_conf(result, xlist[i][1])
         print("better config is")
         print(result)
+    '''
     return result
         
     
