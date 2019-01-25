@@ -83,7 +83,7 @@ for i in range(1,7):
 #     ax.spines['right'].set_visible(False)
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 # plt.show()
-print benchmark1_t
+print(benchmark1_t)
 
 benchmark2_t = []
 plt.figure(2)
@@ -125,7 +125,7 @@ for i in range(1,7):
 #     ax.spines['top'].set_visible(False)
 #     ax.spines['right'].set_visible(False)
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
-print benchmark2_t
+print(benchmark2_t)
 
 plt.figure(3,figsize=(12, 6))
 plt.suptitle("Configuration-performance curve", color="green")
