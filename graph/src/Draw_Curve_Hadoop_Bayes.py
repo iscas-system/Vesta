@@ -49,7 +49,7 @@ row_labels = ['CPU mean(%)', 'CPU standard deviation(%)', 'RAM mean(%)', 'RAM st
               'Network send mean(Mbps)', 'Network send standard deviation(Mbps)']
 table_vals = []
 col_value = []
-col_value_float = []
+mean_value = []
 row_colors = ['gold']
 for i in range(1,num+1):
     plt.figure(i)
@@ -158,6 +158,9 @@ for i in range(1,num+1):
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_d1))))) 
 #     col_value_float.append(('%.2f' % (np.mean(np.array(y_d2))))) 
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_d2)))))
+    mean_value.append([('%.2f' % (np.mean(np.array(y_a)))), ('%.2f' % (np.mean(np.array(y_b)))), \
+                       ('%.2f' % (np.mean(np.array(y_c1)))), ('%.2f' % (np.mean(np.array(y_c2)))), \
+                       ('%.2f' % (np.mean(np.array(y_d1)))), ('%.2f' % (np.mean(np.array(y_d2))))])
     col_value.append([('%.2f' % (np.mean(np.array(y_a)))), ('%.2f' % (np.std(np.array(y_a)))), ('%.2f' % (np.mean(np.array(y_b)))), ('%.2f' % (np.std(np.array(y_b)))), \
                        ('%.2f' % (np.mean(np.array(y_c1)))), ('%.2f' % (np.std(np.array(y_c1)))), ('%.2f' % (np.mean(np.array(y_c2)))), ('%.2f' % (np.std(np.array(y_c2)))), \
                        ('%.2f' % (np.mean(np.array(y_d1)))), ('%.2f' % (np.std(np.array(y_d1)))), ('%.2f' % (np.mean(np.array(y_d2)))), ('%.2f' % (np.std(np.array(y_d2))))])
@@ -167,6 +170,8 @@ plt.subplots_adjust(wspace=0.3, hspace=0.3)
 plt.figure(num+1)
 table_vals = []
 tmp = []
+for col in mean_value:
+    print(np.array(col))
 for col in col_value:
     print(np.array(col))
 for i in range(0,len(col_value[1])):
@@ -184,4 +189,4 @@ my_table = plt.table(cellText=table_vals, colWidths=[0.2]*num, \
 my_table.set_fontsize(20)
 plt.axis('off')
 
-plt.show()
+# plt.show()
