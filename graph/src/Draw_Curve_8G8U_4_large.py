@@ -142,7 +142,7 @@ for i in range(1,num+1):
         m = n.split(",")          
         x.append(5*int(l))
         y_a.append(float('%.2f' % (float(m[2])+float(m[3]))))
-    print('CPU mean: %s' % ('%.2f' % (np.max(np.array(y_a)))))
+    print('CPU mean: %s' % ('%.2f' % (np.mean(np.array(y_a)))))
     print('CPU standard deviation: %s' % ('%.2f' % (np.std(np.array(y_a)))))
     b = locals()['benchmark%s_b1' % str(i)].split(" ")
     x = []
@@ -153,7 +153,7 @@ for i in range(1,num+1):
         m = n.split(",")          
         x.append(5*int(l))
         y_b.append(float('%.2f' % (float(m[2])+float(m[3]))) / float('%.2f' % (float(m[1]) + float(m[2]) + float(m[3]))) * 100)
-    print('RAM mean: %s' % ('%.2f' % (np.max(np.array(y_b)))))
+    print('RAM mean: %s' % ('%.2f' % (np.mean(np.array(y_b)))))
     print('RAM standard deviation: %s' % ('%.2f' % (np.std(np.array(y_b)))))
     locals()['ax'+str(i)] = plt.subplot(3,1,1)
     locals()['ax'+str(i)].set_title(locals()['t'+str(i)])
@@ -179,9 +179,9 @@ for i in range(1,num+1):
         x.append(5*int(l))          
         y_c1.append(float('%.2f' % (float(m[1]))) / 1024 / 1024 / workers)
         y_c2.append(float('%.2f' % (float(m[2]))) / 1024 / 1024 / workers)
-    print("Disk read mean: %sMbps" % ('%.2f' % (np.max(np.array(y_c1)))))
+    print("Disk read mean: %sMbps" % ('%.2f' % (np.mean(np.array(y_c1)))))
     print("Disk read standard deviation: %sMbps" % ('%.2f' % (np.std(np.array(y_c1)))))
-    print("Disk write mean: %sMbps" % ('%.2f' % (np.max(np.array(y_c2)))))
+    print("Disk write mean: %sMbps" % ('%.2f' % (np.mean(np.array(y_c2)))))
     print("Disk write standard deviation: %sMbps" % ('%.2f' % (np.std(np.array(y_c2)))))
     locals()['ax'+str(i)] = plt.subplot(3,1,2)
 #     locals()['ax'+str(i)].set_title(locals()['t'+str(i)])
@@ -207,9 +207,9 @@ for i in range(1,num+1):
         x.append(5*int(l))
         y_d1.append(float('%.2f' % (float(m[1]))) / 1024 / 1024 / workers)
         y_d2.append(float('%.2f' % (float(m[2]))) / 1024 / 1024 / workers)
-    print("Network receive mean: %sMbps" % ('%.2f' % (np.max(np.array(y_d1)))))
+    print("Network receive mean: %sMbps" % ('%.2f' % (np.mean(np.array(y_d1)))))
     print("Network receive standard deviation: %sMbps" % ('%.2f' % (np.std(np.array(y_d1)))))
-    print("Network send mean: %sMbps" % ('%.2f' % (np.max(np.array(y_d2)))))
+    print("Network send mean: %sMbps" % ('%.2f' % (np.mean(np.array(y_d2)))))
     print("Network send standard deviation: %sMbps" % ('%.2f' % (np.std(np.array(y_d2)))))
     locals()['ax'+str(i)] = plt.subplot(3,1,3)
     x_axix, y_axix = (x, y_d1)
@@ -224,24 +224,24 @@ for i in range(1,num+1):
     plt.legend()
     
     col_labels.append(locals()['t'+str(i)])
-#     col_value_float.append(('%.2f' % (np.max(np.array(y_a))))) 
+#     col_value_float.append(('%.2f' % (np.mean(np.array(y_a))))) 
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_a)))))
-#     col_value_float.append(('%.2f' % (np.max(np.array(y_b))))) 
+#     col_value_float.append(('%.2f' % (np.mean(np.array(y_b))))) 
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_b)))))
-#     col_value_float.append(('%.2f' % (np.max(np.array(y_c1)))))
+#     col_value_float.append(('%.2f' % (np.mean(np.array(y_c1)))))
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_c1))))) 
-#     col_value_float.append(('%.2f' % (np.max(np.array(y_c2))))) 
+#     col_value_float.append(('%.2f' % (np.mean(np.array(y_c2))))) 
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_c2))))) 
-#     col_value_float.append(('%.2f' % (np.max(np.array(y_d1))))) 
+#     col_value_float.append(('%.2f' % (np.mean(np.array(y_d1))))) 
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_d1))))) 
-#     col_value_float.append(('%.2f' % (np.max(np.array(y_d2))))) 
+#     col_value_float.append(('%.2f' % (np.mean(np.array(y_d2))))) 
 #     col_value_float.append(('%.2f' % (np.std(np.array(y_d2)))))
-    mean_value.append([('%.2f' % (np.max(np.array(y_a)))), ('%.2f' % (np.max(np.array(y_b)))), \
-                       ('%.2f' % (np.max(np.array(y_c1)))), ('%.2f' % (np.max(np.array(y_c2)))), \
-                       ('%.2f' % (np.max(np.array(y_d1)))), ('%.2f' % (np.max(np.array(y_d2))))])
-    col_value.append([('%.2f' % (np.max(np.array(y_a)))), ('%.2f' % (np.std(np.array(y_a)))), ('%.2f' % (np.max(np.array(y_b)))), ('%.2f' % (np.std(np.array(y_b)))), \
-                       ('%.2f' % (np.max(np.array(y_c1)))), ('%.2f' % (np.std(np.array(y_c1)))), ('%.2f' % (np.max(np.array(y_c2)))), ('%.2f' % (np.std(np.array(y_c2)))), \
-                       ('%.2f' % (np.max(np.array(y_d1)))), ('%.2f' % (np.std(np.array(y_d1)))), ('%.2f' % (np.max(np.array(y_d2)))), ('%.2f' % (np.std(np.array(y_d2))))])
+    mean_value.append([('%.2f' % (np.mean(np.array(y_a)))), ('%.2f' % (np.mean(np.array(y_b)))), \
+                       ('%.2f' % (np.mean(np.array(y_c1)))), ('%.2f' % (np.mean(np.array(y_c2)))), \
+                       ('%.2f' % (np.mean(np.array(y_d1)))), ('%.2f' % (np.mean(np.array(y_d2))))])
+    col_value.append([('%.2f' % (np.mean(np.array(y_a)))), ('%.2f' % (np.std(np.array(y_a)))), ('%.2f' % (np.mean(np.array(y_b)))), ('%.2f' % (np.std(np.array(y_b)))), \
+                       ('%.2f' % (np.mean(np.array(y_c1)))), ('%.2f' % (np.std(np.array(y_c1)))), ('%.2f' % (np.mean(np.array(y_c2)))), ('%.2f' % (np.std(np.array(y_c2)))), \
+                       ('%.2f' % (np.mean(np.array(y_d1)))), ('%.2f' % (np.std(np.array(y_d1)))), ('%.2f' % (np.mean(np.array(y_d2)))), ('%.2f' % (np.std(np.array(y_d2))))])
     
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
