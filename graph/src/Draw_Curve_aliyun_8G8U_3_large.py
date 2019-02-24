@@ -248,6 +248,7 @@ plt.subplots_adjust(wspace=0.3, hspace=0.3)
 plt.figure(num+1)
 table_vals = []
 tmp = []
+print(mean_value)
 for col in mean_value:
     print(np.array(col))
 # for col in col_value:
