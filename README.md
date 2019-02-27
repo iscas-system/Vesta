@@ -1,15 +1,19 @@
-# chameleon
-### 客户端：
-使用服务的客户端
-### 服务端：
-提供配置选择的web服务端，以HTTP请求为接口进行交互
+# CloudZond
+## Introduction
+CloudZond - a tool for picking the best cloud configuration for big data analytics jobs running on clouds. Cloud configuration cotains the VM type (for example ec2.a1.large in Amazon EC2) and the number VM instances. The models we support for picking the best cloud configuration include Bayesian Optimizaion (BO) and Random Forest (RF).
 
------
+**Copyright: Institute of Software, Chinese Academy of Sciences**
 
+**Contact: wuyuewen@otcaix.iscas.ac.cn**
 
-## 接口说明
+## How to run
+1. Download the project to local environment. Require python 2.7 at least.
+2. Execute ```python run.py``` to run the server.
+3. Use RESTful API to select the next cloud configuration.
 
-**初始化：**
+## Interfaces
+
+**Initialization**
 
 _**GET**_: http://URL/pribo
 
@@ -26,11 +30,11 @@ _**GET**_: http://URL/pribo
 ```
 
 
-**发送运行数据给服务器：**
+**Set a configuration**
 
 _**PUT**_: http://URL/pribo/
 
-   _参数：_
+   _parameters：_
 ```
   {
     'count':X,
@@ -54,28 +58,22 @@ _**RESPONSE**:_
 
 ---
 
-## 请求流程
+## Quick start
 
 
-客户端发起Http请求。流程如下
+Do following steps to select the best cloud configuration.
 ```
-C:
-向服务器URL发起Get请求
-S:
-Server收到Get请求，判定为新的任务，进行初始化流程，随机根据可选配置方案，Response三个随机配置
-C:
-收到三个随机配置后，分别在这三种配置下运行任务，获得各种的任务运行时间。将三组数据以PUT形式发给Server
-S:
-S收到数据后，训练模型，利用AC函数选择新配置方案，返回给Client
-C:
-收到新配置后，运行，获得时间，再Put给Server
-S:
-收到数据后，训练模型，利用AC选择新配置方案，返回给Client
-……循环
-C：
-觉得优化够了，发送Delete请求给Server
-S：
-收到Delete请求，认定结束此任务的配置优化
-OVER
+Client:
+Send Initialization request to server.
+Server:
+Randomly selecting 3 different cloud configurations to initialize the process, reture the details of configurations.
+Client:
+Running the job using those 3 cloud configurations, put the job running time to server.
+Server:
+Training the model using BO or RF model, then return the next cloud configuration which will achieve optimal job running time.
+Client:
+Apply the new cloud configuration, and feedback the job running time to server.
+Server:
+Keep on training the model with new data, until the result is confidence enough to be the best.
+End.
 ```
-> [更多说明](http://pboa.mydoc.io/)
