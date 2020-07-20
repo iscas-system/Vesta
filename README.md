@@ -1,4 +1,4 @@
-# CloudZond
+# Apollo
 ## Introduction
 CloudZond - a tool for picking the best cloud configuration for big data analytics jobs running on clouds. Cloud configuration cotains the VM type (for example ec2.a1.large in Amazon EC2) and the number VM instances. The models we support for picking the best cloud configuration include Bayesian Optimizaion (BO) and Random Forest (RF).
 
