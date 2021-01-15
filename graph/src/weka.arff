@@ -1,0 +1,66 @@
+%
+% As used by Kilpatrick, D. & Cameron-Jones, M. (1998). Numeric prediction
+% using instance-based learning with encoding length selection. In Progress
+% in Connectionist-Based Information Systems. Singapore: Springer-Verlag.
+%
+% Deleted "vendor" attribute to make data consistent with with what we
+% used in the data mining book.
+%
+@relation 'Cloud Configuration'
+@attribute time numeric
+@attribute application {TeraSort, WordCount, PageRank, Bayes, Kmeans, LDA, PCA, LR}
+@attribute resource {small, medium, large}
+@attribute vms numeric
+@attribute cpuAverage {low, medium, high}
+@attribute ramAverage {low, medium, high}
+@attribute diskAverage {low, medium, high}
+@attribute netAverage {low, medium, high}
+@data
+93,TeraSort,small,3,medium,high,high,medium
+50,WordCount,small,3,medium,high,medium,low
+138,PageRank,small,3,high,high,low,low
+59,Bayes,small,3,medium,high,low,low
+247,Kmeans,small,3,medium,high,low,low
+490,LDA,small,3,high,high,low,low
+217,PCA,small,3,medium,high,low,low
+611,LR,small,3,high,high,medium,medium
+74,TeraSort,medium,3,medium,medium,high,low
+41,WordCount,medium,3,low,high,high,medium
+89,PageRank,medium,3,high,high,low,low
+47,Bayes,medium,3,medium,high,medium,low
+74,Kmeans,medium,3,medium,high,medium,low
+390,LDA,medium,3,medium,high,low,low
+169,PCA,medium,3,low,high,low,medium
+264,LR,medium,3,medium,high,high,high
+71,TeraSort,large,3,medium,high,high,high
+43,WordCount,large,3,medium,high,high,medium
+98,PageRank,large,3,high,high,low,low
+56,Bayes,large,3,medium,high,medium,medium
+74,Kmeans,large,3,medium,high,medium,low
+359,LDA,large,3,medium,high,low,low
+175,PCA,large,3,low,high,low,medium
+259,LR,large,3,medium,high,medium,medium
+87,TeraSort,small,4,medium,high,high,high
+41,WordCount,small,4,low,medium,high,high
+141,PageRank,small,4,medium,high,low,low
+67,Bayes,small,4,low,high,medium,low
+182,Kmeans,small,4,medium,high,low,low
+637,LDA,small,4,low,high,low,low
+207,PCA,small,4,low,high,medium,low
+558,LR,small,4,medium,high,medium,low
+69,TeraSort,medium,4,low,medium,high,high
+38,WordCount,medium,4,low,high,high,medium
+83,PageRank,medium,4,medium,high,medium,low
+47,Bayes,medium,4,low,medium,medium,medium
+115,Kmeans,medium,4,low,high,medium,low
+551,LDA,medium,4,low,medium,low,low
+227,PCA,medium,4,low,medium,low,low
+841,LR,medium,4,low,high,low,low
+94,TeraSort,large,4,medium,high,high,medium
+52,WordCount,large,4,medium,high,high,medium
+148,PageRank,large,4,medium,high,low,low
+80,Bayes,large,4,low,high,medium,low
+80,Kmeans,large,4,medium,high,medium,low
+348,LDA,large,4,low,medium,low,low
+167,PCA,large,4,low,medium,low,medium
+257,LR,large,4,low,high,medium,medium
