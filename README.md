@@ -6,10 +6,6 @@ Apollo - a tool for picking the best cloud configuration for big data analytics 
 
 **Contact: wuyuewen@otcaix.iscas.ac.cn**
 
-## Paper
-
-- Yuewen Wu, Heng Wu, Wenbo Zhang, Yuanjia Xu, Jun Wei, Hua Zhong: HW3C: A Heuristic based Workload Classification and Cloud Configuration Approach for Big Data Analytics. Internetware 2018: 8:1-8:10
-- Yuewen WU, Yuanjia XU, Heng WU, Lingang SU, Wenbo ZHANG, Hua ZHONG, Apollo: Rapidly Picking the Optimal Cloud Configurations for Big Data Analytics using a Data-Driven Approach. journal of computer science and technology. Accepted
 
 ## How to run
 1. Download the project to local environment. Require python 2.7 at least.
